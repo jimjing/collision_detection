@@ -111,7 +111,14 @@ public:
             manager_path->distance(manager_map, &distance_data, defaultDistanceFunction);
             FCL_REAL min_distance = distance_data.result.min_distance;
             ROS_INFO("The minimum distance is %f", min_distance);
-            res.collide = true;
+            if (min_distance == -1.0)
+            {
+                res.collide = true;
+            }
+            else
+            {
+                res.collide = false;
+            }
         }
 
         return true;
